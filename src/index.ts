@@ -16,6 +16,7 @@ const words = [
   function groupAnagrams(words: string[]): any {
     let result: any = {};
     for (let word of words) {
+      word = word.replace(/\s/g,'');
       let alphabetic = toAlphabetical(word);
       if (result[alphabetic]) {
         result[alphabetic].push(word);
