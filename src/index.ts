@@ -1,35 +1,55 @@
+
+/**
+ * Input words
+ */
 const words = [
   'rope',
   'pore',
   'repo',
   'red rum',
+  'Funeral', 
+  'Real fun',
+  'Astronomer', 
+  'moon starer',
   'murder',
   'listen',
   'silent',
   'endeavour'
 ];
 
-  function toAlphabetical(word: string): string {
+/**
+ * Return sorted letters
+ * @param word 
+ * @returns string
+ */
+  function toSortedLetters(word: string): string {
     return word.split("").sort().join("");
   }
 
-  function groupAnagrams(words: string[]): any {
+  /**
+   * Group anagrams together
+   * @param words string[]
+   * @returns string[]
+   */
+  function groupAnagrams(words: string[]): string[] {
     let result: any = {};
-    for (let word of words) {
-      word = word.replace(/\s/g,'');
-      let alphabetic = toAlphabetical(word);
+    words.forEach((word: string) => {
+      // ensure spaces removed and lowercase!
+      word = word.replace(/\s/g,'').toLowerCase();
+      let alphabetic = toSortedLetters(word); 
       if (result[alphabetic]) {
         result[alphabetic].push(word);
       } else {
         result[alphabetic] = [word];
       }
-    }
+    })
     return Object.values(result);
   }
+ 
   
 const grouped = groupAnagrams(words);
 
-// iterate over groups and print each one
+// Print each one
 for(const sortedWord in grouped) {
     console.log(`${grouped[sortedWord]}\n`);
 }
